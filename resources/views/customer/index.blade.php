@@ -32,9 +32,6 @@
       </th>
     </tr>
   </thead>
-
- 
-
   @foreach ($customers as $customer)
 
   <tbody>
@@ -45,7 +42,7 @@
       <td>{{$customer->email}}</td>
       <td>{{$customer->contactNumber}}</td>
       <td>{{$customer->address}}</td>
-      <td><a href="#">Edit</a></td>
+      <td><a href="edit/{{$customer->id}}" style="color:white"><button type="button" class="btn btn-primary">Edit</a></td>
       <td><a href="delete/{{$customer->id}}" style="color:white"><button type="button" class="btn btn-danger">Delete</a></td>
     </tr>
   </tbody>

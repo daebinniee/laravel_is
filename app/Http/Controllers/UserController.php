@@ -48,4 +48,25 @@ class UserController extends Controller
         return redirect('login');
     }
 
+    public function updateCustomer(Request $req){
+        $req->validate([
+            "firstName" =>['required','min:4'],
+            "lastName" =>['required','min:4'],
+            "email" =>['required', 'email', 
+            Rule::unique('users','email'),],
+            "contactNumber"=>['required','min:11'],
+            "address"=>['required', 'min:4']
+         ]);
+         $data=Customer::find($req->id);
+         $data->id=$req->id;
+         $data->firstName=$req->firstName;
+         $data->lastName=$req->lastName;
+         $data->email=$req->email;
+         $data->contactNumber=$req->contactNumber;
+         $data->address=$req->address;
+
+         $data->save();
+         return redirect("/")->with('success', 'Customer edited successfully.');
+    }
+
 }
